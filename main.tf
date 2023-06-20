@@ -1,6 +1,7 @@
 # Se define el provider
 provider "azurerm" {
   features {}
+  subscription_id = "05ac627c-5070-4fab-8d59-7eaa35114b1f"
 }
 
 # Creo el resource group para mi web app
