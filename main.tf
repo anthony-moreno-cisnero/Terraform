@@ -25,7 +25,7 @@ resource "azurerm_linux_web_app" "example_linux_web_app" {
   location            = azurerm_service_plan.example_sp_anthony.location
   service_plan_id     = azurerm_service_plan.example_sp_anthony.id
 
-  site_config = {
+  app_settings = {
     "Google" = "www.google.com",
     "Youtube" = "www.youtube.com"
   }
