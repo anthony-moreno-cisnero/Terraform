@@ -4,26 +4,21 @@ provider "azurerm" {
   subscription_id = "05ac627c-5070-4fab-8d59-7eaa35114b1f"
 }
 
-# Creo el resource group para mi web app
-resource "azurerm_resource_group" "example_anthony" {
-  name     = "example_anthony"
-  location = "West Europe"
-}
-
+# Si no esta creado el resourse group se debe crear previamente
 # Se define el service plan que tendrá mi maquina virtual
 resource "azurerm_service_plan" "example_sp_anthony" {
   name                = "serviceplan_anthony"
-  resource_group_name = azurerm_resource_group.example_anthony.name
-  location            = azurerm_resource_group.example_anthony.location
+  resource_group_name = "Terraform-Anthony"
+  location            = "West US"
   os_type             = "Linux"
-  sku_name            = "F1"
+  sku_name            = "B1"
 }
 
 # Se define el web app
 resource "azurerm_linux_web_app" "example_linux_web_app" {
   name                = "webappAnthony"
-  resource_group_name = azurerm_resource_group.example_anthony.name
-  location            = azurerm_service_plan.example_sp_anthony.location
+  resource_group_name = "Terraform-Anthony"
+  location            = "West US"
   service_plan_id     = azurerm_service_plan.example_sp_anthony.id
 
   site_config {
